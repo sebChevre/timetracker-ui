@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ListePeriodes from './components/ListePeriodes'
+import { Col,Row} from 'reactstrap';
 import './App.css';
+import {DetailPeriode} from "./components/DetailPeriode";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            lastListUpdate: new Date()
+        }
+
+    }
+
+
+
+
+    onPeriodeCreeEvent = () => {
+        console.log("creeeee")
+        console.log(this.state)
+        this.setState(
+            { lastListUpdate:new Date() }
+        )
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Row>
+                  <Col sm="6">
+                      <ListePeriodes lastUpdate={this.state.lastListUpdate}/>
+                  </Col>
+
+                  <Col sm="6">
+                      <DetailPeriode onCreeEvent={this.onPeriodeCreeEvent}/>
+                </Col>
+            </Row>
+        </div>
     );
   }
 }
