@@ -19,15 +19,18 @@ export class DetailPeriode extends React.Component {
 
     onDebutChange = dateDebut => {
         this.setState({ dateDebut });
-        console.log(this.state.dateDebut);
+        console.log("dadebut change: " + this.state.dateDebut);
     }
 
     onFinChange = dateFin => {
         this.setState({ dateFin });
-        console.log(this.state.dateFin);
+        console.log("date fin change: "  +this.state.dateFin);
     }
 
     creer = () => {
+
+        console.log("dateDebut : " + this.state.dateDebut + "dateFin: " + this.state.dateFin )
+
         fetch('http://localhost:9090/periodes', {
             method: 'POST',
             headers: {
@@ -36,7 +39,7 @@ export class DetailPeriode extends React.Component {
             },
             body: JSON.stringify({
                 debut: this.state.dateDebut,
-                fin: this.state.dateFin
+                fin: this.state.dateFinn
             })
         })
             .then(res => res.json())
