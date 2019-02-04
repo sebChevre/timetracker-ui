@@ -19,12 +19,12 @@ export class DetailPeriode extends React.Component {
 
     onDebutChange = dateDebut => {
         this.setState({ dateDebut });
-        console.log(this.state.dateDebut);
+        console.log("dadebut change: " + this.state.dateDebut);
     }
 
     onFinChange = dateFin => {
         this.setState({ dateFin });
-        console.log(this.state.dateFin);
+        console.log("date fin change: "  +this.state.dateFin);
     }
 
     creer = () => {
