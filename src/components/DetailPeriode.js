@@ -28,6 +28,10 @@ export class DetailPeriode extends React.Component {
     }
 
     creer = () => {
+
+        console.log("Before creer: " + this.state.dateDebut)
+        console.log("Date object conversion creer: " + new Date(this.state.dateDebut))
+
         fetch('http://localhost:9090/periodes', {
             method: 'POST',
             headers: {
