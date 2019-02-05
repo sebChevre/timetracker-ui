@@ -15,10 +15,7 @@ class App extends Component {
     }
 
 
-
-
     onPeriodeCreeEvent = () => {
-        console.log("creeeee")
         console.log(this.state)
         this.setState(
             { lastListUpdate:new Date() }
