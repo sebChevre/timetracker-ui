@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader,Table} from 'reactstrap';
+import * as moment from 'moment';
 
 export class ListePeriodes extends React.Component {
 
@@ -21,6 +22,18 @@ export class ListePeriodes extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log(result.periodes)
+
+                    result.periodes.forEach(periode => {
+                        console.log(periode)
+                        if (periode.dateFin === null){
+                            periode.dateFin = moment()
+                            periode.classe = 'open'
+                        }
+                        var d = moment(periode.dateDebut)
+                        console.log(moment().format('DD-MM-YYYY'))
+                        d.format(periode.dateDebut)
+                    })
 
                     console.log(result.periodes.length)
                     console.log(this.state.periodes.length)
@@ -70,19 +83,27 @@ export class ListePeriodes extends React.Component {
                     <Table>
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>id</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th>Heures</th>
+                            <th>Minutes</th>
                         </tr>
                         </thead>
                         <tbody>
                         {this.state.periodes.map(periode => (
                             <tr key={periode.id}>
-                                <th scope="row">1</th>
-                                <td>{periode.id}</td>
-                                <td>{periode.dateDebut}</td>
-                                <td>{periode.dateFin}</td>
+                                <th scope="row">{periode.id}</th>
+                                <td>
+                                    <label className="date">{moment(periode.dateDebut).format('DD-MM-YYYY')}</label><br/>
+                                    <label className="time">{moment(periode.dateDebut).format('HH:mm:ss')}</label>
+                                </td>
+                                <td>
+                                    <label className="date">{moment(periode.dateFin).format('DD-MM-YYYY')}</label><br/>
+                                    <label className={"time " + periode.classe}>{moment(periode.dateFin).format('HH:mm:ss')}</label>
+                                </td>
+                                <td>{periode.duree.heures}</td>
+                                <td>{periode.duree.minutes}</td>
                             </tr>
                         ))}
                         </tbody>

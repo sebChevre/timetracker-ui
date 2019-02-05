@@ -30,3 +30,16 @@
     transform: rotate(360deg);
   }
 }
+
+.time {
+  font-weight: bolder;
+}
+
+.open{
+  font-style: italic;
+  color: red;
+}
+
+.date{
+  font-size: 10px;
+}
